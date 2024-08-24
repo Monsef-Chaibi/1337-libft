@@ -2,6 +2,6 @@ FILES = $(shell clear)
 
 test: 
 	@echo $(FILES)
-	@gcc test.c
+	@gcc -Wall -Wextra -Werror test.c 
 	@./a.out
 	
