@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "libft.h"
 
 void	ft_space(const char *s, size_t *i)
 {

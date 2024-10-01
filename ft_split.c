@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_get_word_len(const char *s, char c, int start)
 {

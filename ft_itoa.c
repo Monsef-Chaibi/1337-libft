@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include "libft.h"
+
 
 int ft_count_dig(int x)
 {
