@@ -14,7 +14,7 @@ int ft_check_char(char const *str,const char c)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int	i;
 	int	x;
