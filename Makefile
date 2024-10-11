@@ -11,6 +11,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
+test:
+	@clear
+	@$(CC) $(SRC) -o main
+	@./main
+
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 

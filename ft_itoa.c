@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: monsef <monsef@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 11:28:13 by monsef            #+#    #+#             */
+/*   Updated: 2024/10/11 11:29:02 by monsef           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-
-int ft_count_dig(int x)
+int	ft_count_dig(int x)
 {
-	int results;
+	int	results;
 
 	if (!x)
 		return (1);
-	
 	results = 1;
-	while(x / 10 != 0)
+	while (x / 10 != 0)
 	{
 		results++;
 		x /= 10;
@@ -17,9 +27,9 @@ int ft_count_dig(int x)
 	return (results);
 }
 
-char *ft_putchar(int nbr_dig, int signe, int n)
-{	
-	char *str; 
+char	*ft_putchar(int nbr_dig, int signe, int n)
+{
+	char	*str;
 
 	str = malloc(nbr_dig + 1);
 	if (!str)
@@ -37,11 +47,11 @@ char *ft_putchar(int nbr_dig, int signe, int n)
 	return (str);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *str_tmp;
-	int nbr_dig;
-	int signe;
+	char	*str_tmp;
+	int		nbr_dig;
+	int		signe;
 
 	signe = 0;
 	if (n == -2147483648)
