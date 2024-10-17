@@ -6,7 +6,7 @@
 /*   By: monsef <monsef@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 11:29:38 by monsef            #+#    #+#             */
-/*   Updated: 2024/10/11 11:50:08 by monsef           ###   ########.fr       */
+/*   Updated: 2024/10/14 12:10:53 by monsef           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*s_tmp;
-	size_t	i;
+	unsigned char	*s_tmp;
+	size_t			i;
 
-	s_tmp = (char *)s;
+	s_tmp = (unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{
