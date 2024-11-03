@@ -3,100 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsef <monsef@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 11:33:50 by monsef            #+#    #+#             */
-/*   Updated: 2024/10/11 12:04:49 by monsef           ###   ########.fr       */
+/*   Created: 2024/10/25 09:43:52 by mchaibi           #+#    #+#             */
+/*   Updated: 2024/10/29 11:16:33 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_get_word_len(const char *s, char c, int start)
-{
-	int	len;
-	int	i;
-	int	num_del;
-
-	num_del = 0;
-	i = 0;
-	len = 0;
-	if (start != 0)
-	{
-		while (num_del != start)
-		{
-			if (s[i] == c)
-				num_del++;
-			i++;
-		}
-	}
-	while (s[i] != c && s[i] != '\0')
-	{
-		i++;
-		len++;
-	}
-	return (len);
-}
-
-int	ft_count_words(char const *s, char c)
+int	ft_count_word(char const *str, char c)
 {
 	int	i;
 	int	result;
 
-	result = 0;
 	i = 0;
-	while (s[i] != '\0')
+	result = 0;
+	if (str[0] != c && str[0] != '\0')
+		result = 1;
+	while (str[i] != '\0')
 	{
-		if (s[i] == c)
+		if (str[i] == c && (str[i + 1] != c && str[i + 1] != '\0'))
 			result++;
 		i++;
 	}
-	result += 2;
 	return (result);
 }
 
-char	*ft_extract_word(const char *s, char c, int start)
+char	**ft_free_split(char **str, int count)
 {
-	char	*str;
-	int		i;
-	int		x;
-	int		num_del;
+	int	i;
 
-	num_del = 0;
+	i = 0;
+	while (i < count && str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (NULL);
+}
+
+char	**ft_put(char **str, char const *s, char c, int nb)
+{
+	int	start;
+	int	i;
+	int	x;
+
+	start = 0;
 	i = 0;
 	x = 0;
-	str = malloc(ft_get_word_len(s, c, start) + 1);
-	if (start != 0)
+	while (x < nb)
 	{
-		while (num_del != start)
-		{
-			if (s[i] == c)
-				num_del++;
+		while (s[i] == c)
 			i++;
-		}
+		start = i;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		str[x] = ft_substr(s, start, i - start);
+		if (!str[x])
+			return (ft_free_split(str, x));
+		x++;
 	}
-	while (s[i] != c && s[i] != '\0')
-		str[x++] = s[i++];
-	str[x] = '\0';
+	str[x] = 0;
 	return (str);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		num_arr;
-	char	**arr_tmp;
-	int		i;
+	char	**str_tmp;
 
-	num_arr = ft_count_words(s, c);
-	arr_tmp = malloc(sizeof (char *) * num_arr);
-	i = 0;
-	while (i < num_arr)
-	{
-		arr_tmp[i] = ft_extract_word(s, c, i);
-		i++;
-		if (i + 1 == num_arr)
-			break ;
-	}
-	arr_tmp[i] = NULL;
-	return (arr_tmp);
+	if (!s)
+		return (NULL);
+	str_tmp = malloc(sizeof(char *) * (ft_count_word(s, c) + 1));
+	if (!str_tmp)
+		return (NULL);
+	if (!ft_put(str_tmp, s, c, ft_count_word(s, c)))
+		return (NULL);
+	return (str_tmp);
 }

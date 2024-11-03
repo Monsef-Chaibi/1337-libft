@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 10:32:12 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/28 12:22:38 by mchaibi          ###   ########.fr       */
+/*   Created: 2024/11/02 11:21:27 by mchaibi           #+#    #+#             */
+/*   Updated: 2024/11/03 12:09:06 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(const char *s1, const char *set)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*str;
-	int		start;
-	int		end;
+	t_list	*nd_tmp;
+	t_list	*nd_new;
+	t_list	*next;
 
-	start = 0;
-	end = ft_strlen(s1);
-	while (s1[start] != '\0' && ft_strchr(set, s1[start]))
-		start++;
-	while (end > start && ft_strchr(set, s1[end - 1]))
-		end--;
-	str = malloc(end - start + 1);
-	if (!str)
+	if (!f || !del)
 		return (NULL);
-	if (start == end)
-		str[0] = '\0';
-	else
-		ft_strlcpy(str, &s1[start], end - start + 1);
-	return (str);
+	nd_tmp = NULL;
+	while (lst)
+	{
+		nd_new = ft_lstnew((*f)(lst->content));
+		if (!nd_new)
+		{
+			while (nd_tmp)
+			{
+				next = nd_tmp->next;
+				(*del)(nd_tmp->content);
+				free(nd_tmp);
+				nd_tmp = next;
+			}
+			return (NULL);
+		}
+		ft_lstadd_back(&nd_tmp, nd_new);
+		lst = lst->next;
+	}
+	return (nd_tmp);
 }

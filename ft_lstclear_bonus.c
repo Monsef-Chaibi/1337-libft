@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 19:02:50 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/22 19:02:57 by mchaibi          ###   ########.fr       */
+/*   Created: 2024/11/02 10:38:55 by mchaibi           #+#    #+#             */
+/*   Updated: 2024/11/02 11:02:39 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	size_t			i;
-	unsigned char	*s1_tmp;
-	unsigned char	*s2_tmp;
+	t_list	*nd_tmp;
 
-	s1_tmp = (unsigned char *)s1;
-	s2_tmp = (unsigned char *)s2;
-	i = 0;
-	while (i < n)
+	if (!lst || !*lst)
+		return ;
+	while (*lst)
 	{
-		if (s1_tmp[i] != s2_tmp[i])
-		{
-			return (s1_tmp[i] - s2_tmp[i]);
-		}
-		i++;
+		nd_tmp = *lst;
+		*lst = (*lst)->next;
+		if (del)
+			(*del)(nd_tmp->content);
+		free(nd_tmp);
 	}
-	return (0);
 }

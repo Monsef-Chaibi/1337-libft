@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsef <monsef@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 11:31:08 by monsef            #+#    #+#             */
-/*   Updated: 2024/10/12 12:16:35 by monsef           ###   ########.fr       */
+/*   Created: 2024/10/22 19:03:14 by mchaibi           #+#    #+#             */
+/*   Updated: 2024/10/28 10:19:32 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -18,8 +19,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*dest_tmp;
 	unsigned char	*src_tmp;
 
-	if (dest == NULL || src == NULL)
-		return (NULL);
+	if (!dest && !src)
+		return (0);
 	dest_tmp = (unsigned char *)dest;
 	src_tmp = (unsigned char *)src;
 	i = 0;
