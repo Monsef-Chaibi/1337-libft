@@ -6,13 +6,13 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:40:34 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/26 15:25:35 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/06 11:23:18 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count(int nb)
+static int	ft_count(int nb)
 {
 	int	result;
 
@@ -25,7 +25,7 @@ int	ft_count(int nb)
 	return (result);
 }
 
-char	*ft_putnbr(int nb, int nbr_dig, int signe)
+static char	*ft_putnbr(int nb, int nbr_dig, int signe)
 {
 	char	*str;
 
@@ -45,7 +45,7 @@ char	*ft_putnbr(int nb, int nbr_dig, int signe)
 	return (str);
 }
 
-char	*ft_check(int c)
+static char	*ft_check(int c)
 {
 	char	*str;
 

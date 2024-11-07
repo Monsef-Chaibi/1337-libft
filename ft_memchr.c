@@ -6,7 +6,7 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:00:55 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/26 11:18:01 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:25:44 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	{
 		if (s_tmp[i] == (unsigned char)c)
 		{
-			return (&s_tmp[i]);
+			return ((void *)&s_tmp[i]);
 		}
 		i++;
 	}

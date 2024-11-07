@@ -6,7 +6,7 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:20:02 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/11/02 19:05:35 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/07 11:29:46 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (!s1 && len == 0)
+	if (!s1 && len == 0 && s2)
 		return (NULL);
 	if (s2[0] == '\0')
 		return ((char *)s1);

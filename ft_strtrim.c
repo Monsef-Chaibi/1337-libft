@@ -6,7 +6,7 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:32:12 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/28 12:22:38 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/05 18:10:49 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 	int		start;
 	int		end;
 
+	if (!s1 || !set)
+		return (NULL);
 	start = 0;
 	end = ft_strlen(s1);
 	while (s1[start] != '\0' && ft_strchr(set, s1[start]))

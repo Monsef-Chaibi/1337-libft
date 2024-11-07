@@ -9,31 +9,27 @@ BONUS_FILES = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_ls
 			  ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
 			  ft_lstmap_bonus.c
 OBJ = $(SRC:%.c=%.o)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-BONUS_OBJ	=	$(BONUS_FILES:.c=.o)
+BONUS_OBJ = $(BONUS_FILES:%.c=%.o)
 
 all: $(NAME)
 
-test:
-	@clear
-	@$(CC) main.c $(SRC) $(BONUS_FILES) -o main
-	@./main
-
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+bonus: $(BONUS_OBJ)
+	ar rc $(NAME) $(BONUS_OBJ)
 
-bonus:		$(BONUS_FILES)
-	@gcc -c $(FLAG) $(BONUS_FILES)
-	@ar rcs $(NAME) $(BONUS_OBJ)
-	@ranlib $(NAME)
+%.o: %.c libft.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus

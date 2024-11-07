@@ -6,7 +6,7 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 12:56:15 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/25 14:42:31 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/05 18:11:53 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	if (!s)
+		return ;
 	write(fd, s, ft_strlen(s));
 }

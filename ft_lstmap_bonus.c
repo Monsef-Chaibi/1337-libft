@@ -6,7 +6,7 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 11:21:27 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/11/03 12:09:06 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/05 11:09:37 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*nd_tmp;
-	t_list	*nd_new;
-	t_list	*next;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*content;
 
-	if (!f || !del)
+	if (!f || !del || !lst)
 		return (NULL);
-	nd_tmp = NULL;
+	new_list = NULL;
 	while (lst)
 	{
-		nd_new = ft_lstnew((*f)(lst->content));
-		if (!nd_new)
+		content = (*f)(lst->content);
+		new_node = ft_lstnew(content);
+		if (!new_node)
 		{
-			while (nd_tmp)
-			{
-				next = nd_tmp->next;
-				(*del)(nd_tmp->content);
-				free(nd_tmp);
-				nd_tmp = next;
-			}
+			(*del)(content);
+			ft_lstclear(&new_list, (*del));
 			return (NULL);
 		}
-		ft_lstadd_back(&nd_tmp, nd_new);
+		ft_lstadd_back(&new_list, new_node);
 		lst = lst->next;
 	}
-	return (nd_tmp);
+	return (new_list);
 }

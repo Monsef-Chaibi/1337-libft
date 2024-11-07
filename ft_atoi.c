@@ -6,13 +6,13 @@
 /*   By: mchaibi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:59:29 by mchaibi           #+#    #+#             */
-/*   Updated: 2024/10/30 15:11:21 by mchaibi          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:17:24 by mchaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_space(const char *s, size_t *i)
+static void	ft_space(const char *s, size_t *i)
 {
 	while ((9 <= s[*i] && s[*i] <= 13) || s[*i] == 32)
 	{
@@ -22,9 +22,9 @@ void	ft_space(const char *s, size_t *i)
 
 int	ft_atoi(const char *nptr)
 {
-	size_t	i;
-	int		result;
-	int		sign;
+	size_t				i;
+	unsigned long long	result;
+	int					sign;
 
 	result = 0;
 	sign = 1;
@@ -32,9 +32,6 @@ int	ft_atoi(const char *nptr)
 	ft_space(nptr, &i);
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if ((nptr[i] == '-' || nptr[i] == '+')
-			&& (nptr[i + 1] == '-' || nptr[i + 1] == '+'))
-			return (0);
 		if (nptr[i] == '-')
 			sign = -1;
 		i++;
@@ -43,7 +40,11 @@ int	ft_atoi(const char *nptr)
 	{
 		result *= 10;
 		result = result + (nptr[i] - 48);
+		if (result >= 9223372036854775807 && sign == 1)
+			return (-1);
+		if (result > 9223372036854775807 && sign == -1)
+			return (0);
 		i++;
 	}
-	return (result * sign);
+	return ((int)result * sign);
 }
